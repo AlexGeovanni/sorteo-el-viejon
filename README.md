@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sorteos El Viejon
 
-## Getting Started
+Aplicacion web para mostrar sorteos, seleccionar boletos y guiar al usuario en el proceso de pago.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+
+## Estructura base
+
+- `src/app` rutas principales (`/` y `/:slug`)
+- `src/components` componentes reutilizables de UI y secciones
+- `src/services` consumo de servicios externos
+- `src/data` datos estaticos (boletos, ubicaciones)
+- `src/utils` utilidades y helpers
+
+## Requisitos
+
+- Node.js 20+
+- pnpm (recomendado)
+
+## Instalacion
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Desarrollo local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+La app queda disponible en [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `pnpm dev` inicia entorno de desarrollo
+- `pnpm build` genera build de produccion
+- `pnpm start` levanta la build en produccion
+- `pnpm lint` ejecuta ESLint
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## SEO y Accesibilidad (baseline)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+El proyecto incluye una base inicial con:
 
-## Deploy on Vercel
+- Metadatos globales (`title`, `description`, OpenGraph, canonical)
+- Soporte de navegacion por teclado con `focus-visible`
+- Enlace "Saltar al contenido principal"
+- Etiquetas accesibles en botones, links e inputs clave
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Pendientes sugeridos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Redactar las politicas, terminos y legales
+- Integrar datos reales de sorteos desde API (actualmente hay contenido de ejemplo)

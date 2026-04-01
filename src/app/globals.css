@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #020202;
+  --foreground: #F2F2F2;
+  --primary:#E71D79;
 }
 
 @theme inline {
-  --color-background: var(--background);
+  /* --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-geist-mono); */
+  --color-primary:var(--primary);
+  --breakpoint-xs:25rem;
+  --breakpoint-xsm: 30rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-tablet:56.25rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-xlm:90rem;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@utility scroll-container {
+  @apply snap-x snap-mandatory snap-start
 }
 
+@utility title-h{
+  @apply text-lg font-semibold xs:text-[22px] tracking-[0.025rem] text-center xsm:text-[28px] md:text-[32px] lg:text-[38px] 2xl:text-5xl
+}
+
+html {
+  scroll-behavior: smooth;
+}
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 1px solid #F4F4F4;
+  outline-offset: 1px;
+}
+
+.animate-optimized {
+  will-change: transform;
+}
+
+.sorteos-marquee {
+  animation: sorteos-marquee 35s linear infinite;
+}
+
+@keyframes sorteos-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thumb-gray {
+  scrollbar-color: #cfdae9 transparent; /* gris-400 */
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #a0aec0; /* gris-400 */
+  border-radius: 8px;
+}
+
+input,
+textarea {
+  /* background-color: #1a1a1a;
+  color: #fff; */
+  color-scheme: dark;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  /* -webkit-text-fill-color: #fff !important; */
+  -webkit-box-shadow: 0 0 0px 1000px #171717 inset !important;
+  border:inherit;
+}
+
+section {
+  scroll-margin-top: 80px;
 }
