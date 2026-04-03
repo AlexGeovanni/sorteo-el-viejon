@@ -2,6 +2,7 @@ import { cn } from "@/utils/cn";
 
 type IconProps = {
   className?: string;
+  size?: number;
 };
 
 export const IconArrowUpRight = ({ className }: IconProps) => (
@@ -37,6 +38,7 @@ export const IconFacebook = ({ className }: IconProps) => (
     />
   </svg>
 );
+
 export const IconWhatsApp = ({ className }: IconProps) => (
   <svg
     className={className}
@@ -70,19 +72,22 @@ export const IconTicket = ({ className }: IconProps) => (
   </svg>
 );
 
-export const IconClose = ({ className }: IconProps) => (
+export const IconClose = ({ className, size = 24 }: IconProps) => (
   <svg
-    className={className}
     xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
     fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={cn("icon icon-tabler icons-tabler-outline icon-tabler-x",className)}
   >
-    <path
-      d="M6.7249 8.40005L1.8249 13.3C1.64157 13.4834 1.40824 13.575 1.1249 13.575C0.841569 13.575 0.608235 13.4834 0.424902 13.3C0.241569 13.1167 0.149902 12.8834 0.149902 12.6C0.149902 12.3167 0.241569 12.0834 0.424902 11.9L5.3249 7.00005L0.424902 2.10005C0.241569 1.91672 0.149902 1.68338 0.149902 1.40005C0.149902 1.11672 0.241569 0.883382 0.424902 0.700048C0.608235 0.516715 0.841569 0.425049 1.1249 0.425049C1.40824 0.425049 1.64157 0.516715 1.8249 0.700048L6.7249 5.60005L11.6249 0.700048C11.8082 0.516715 12.0416 0.425049 12.3249 0.425049C12.6082 0.425049 12.8416 0.516715 13.0249 0.700048C13.2082 0.883382 13.2999 1.11672 13.2999 1.40005C13.2999 1.68338 13.2082 1.91672 13.0249 2.10005L8.1249 7.00005L13.0249 11.9C13.2082 12.0834 13.2999 12.3167 13.2999 12.6C13.2999 12.8834 13.2082 13.1167 13.0249 13.3C12.8416 13.4834 12.6082 13.575 12.3249 13.575C12.0416 13.575 11.8082 13.4834 11.6249 13.3L6.7249 8.40005Z"
-      fill="white"
-    />
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M18 6l-12 12" />
+    <path d="M6 6l12 12" />
   </svg>
 );
 
@@ -141,18 +146,21 @@ export const IconSearch = ({ className }: IconProps) => (
   </svg>
 );
 
-export const IconMenu = ({ className }: IconProps) => (
+export const IconMenu = ({ className, size = 24 }: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={28}
-    height={28}
+    width={size}
+    height={size}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
     strokeWidth={1.5}
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={cn("icon icon-tabler icons-tabler-outline icon-tabler-menu-2",className)}
+    className={cn(
+      "icon icon-tabler icons-tabler-outline icon-tabler-menu-2",
+      className,
+    )}
   >
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
     <path d="M4 6l16 0" />

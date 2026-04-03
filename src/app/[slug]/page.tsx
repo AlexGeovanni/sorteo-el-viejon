@@ -31,18 +31,26 @@ export default function Home() {
   })
 };
 
+  // Open dialog luck 
   const handleOpenLuck = () => {
     resetSelected();
     setOpenLuck(true);
   };
 
-  const HandleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
+  // text capturer for search engine
+  const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value === "" || /^\d+$/.test(value)) {
       SetSearchValue(value);
     }
   };
 
+  // Handler search tickets by number
+  const handleSearchNumber = () => {
+    setTickets(ticketsDataMerge.filter((b) => b.numero.includes(searchValue)));
+  };
+
+  // Open dialog tickets random
   const handleTicketRandom = (value: string) => {
     if (value.length > 0) {
       setValueSelect(value);
@@ -50,6 +58,7 @@ export default function Home() {
     }
   };
 
+  // available tickets selector
   const toggleSeleccion = (id: number) => {
     setTickets((prev) =>
       prev.map((b) =>
@@ -58,10 +67,7 @@ export default function Home() {
     );
   };
 
-  const handleSearchNumber = () => {
-    setTickets(ticketsDataMerge.filter((b) => b.numero.includes(searchValue)));
-  };
-  // resetear todo los seleccionados
+  // reset all selected tickets
   const resetSelected = () => {
     setTickets((prev) =>
       prev.map((ticket) => ({
@@ -87,8 +93,9 @@ export default function Home() {
     );
   };
 
-  // 📊 Contador
+  // Contador
   const selected = tickets.filter((b) => b.select);
+
   const total = selected.reduce((a, b) => {
     return a + b.precio;
   }, 0);
@@ -122,7 +129,6 @@ export default function Home() {
                   className="h-full w-full aspect-square object-cover sm:object-fill"
                 />
               </div>
-              {/* <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-neutral-950/10"></div> */}
               <div className="-mt-23 pointer-events-none  flex w-full transform-gpu flex-col items-center gap-1 p-4  ">
                 <h3 className="uppercase text-white font-normal md:text-lg">
                   6 DE JUNIO 2025
@@ -151,7 +157,7 @@ export default function Home() {
                     className=" rounded-full px-5 pr-12 w-full h-full outline-none border-none text-black"
                     placeholder="Buscar boleto"
                     value={searchValue}
-                    onChange={HandleChangeValue}
+                    onChange={onChangeValue}
                   />
                   <button
                     tabIndex={0}
@@ -213,7 +219,7 @@ export default function Home() {
                     tabIndex={0}
                     aria-label="comprar boleto normal"
                     type="button"
-                    className="group w-full flex items-center justify-center gap-1 font-bold text-white bg-primary py-2 px-5 rounded-full cursor-pointer transition duration-300 ease-in-out hover:text-primary hover:bg-white focus:bg-white focus:text-primary"
+                    className="group w-full flex items-center justify-center text-sm gap-1 font-bold text-white bg-primary py-2 px-5 rounded-full cursor-pointer transition duration-300 ease-in-out hover:text-primary hover:bg-white focus:bg-white focus:text-primary xs:text-base"
                     onClick={() => handleTicketRandom("x1 Boleto")}
                   >
                     <IconTicket className="size-5 " /> x1 $9 MXN
@@ -225,14 +231,14 @@ export default function Home() {
                     tabIndex={0}
                     aria-label="comprar boleto normal"
                     type="button"
-                    className="group w-full flex items-center justify-center gap-1 font-bold text-white bg-primary py-2 px-5 rounded-full cursor-pointer transition duration-300 ease-in-out hover:text-primary hover:bg-white focus:bg-white focus:text-primary"
+                    className="group w-full flex items-center justify-center text-sm gap-1 font-bold text-white bg-primary py-2 px-5 rounded-full cursor-pointer transition duration-300 ease-in-out hover:text-primary hover:bg-white focus:bg-white focus:text-primary xs:text-base"
                     onClick={() => handleTicketRandom("x10 Boleto")}
                   >
                     <IconTicket className="size-5" /> x10 $80 MXN
                   </button>
                 </div>
               </div>
-              <div className="mt-7 text-xl flex flex-col gap-5 2xl:gap-[28px] ">
+              <div className="mt-7 flex flex-col gap-5 2xl:gap-[28px] md:text-xl">
                 <div className="text-center space-y-2 2xl:space-y-4 ">
                   <p>
                     <span className="font-bold ">Bono VIP, </span>si compraste
@@ -279,13 +285,14 @@ export default function Home() {
             </div>
           </Wrapper>
         </section>
+
         <DiagolRandom
           valueSelect={valueSelect}
           open={openRandom}
           setOpen={setOpenRandom}
         />
         <DiagolLuck
-          tickets={tickets.filter((t) => !(t.select || t.vendido))}
+          tickets={ticketsDataMerge?.filter((t) => !(t.select || t.vendido))}
           open={openLuck}
           setOpen={setOpenLuck}
         />

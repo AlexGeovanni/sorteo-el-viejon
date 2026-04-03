@@ -4,36 +4,47 @@ import { cn } from "@/utils/cn";
 import Link from "next/link";
 
 interface Props {
-  isMenuOpen:boolean;
+  isMenuOpen: boolean;
   isActiveBtn: string;
-  setIsMenuOpen:(e:boolean)=>void;
-  setIsActiveBtn: (id: string) => void;
+  setIsMenuOpen: (e: boolean) => void;
+  handleClick: (id: string) => void;
 }
 
-export default function MobileNav({isMenuOpen, isActiveBtn, setIsActiveBtn, setIsMenuOpen }: Props) {
+export default function MobileNav({
+  isMenuOpen,
+  isActiveBtn,
+  setIsMenuOpen,
+  handleClick,
+}: Props) {
   return (
-    <div className="block tablet:hidden tablet:opacity-0 tablet:pointer-events-none">
-      <div className="w-6 h-6">
+    <div className="block tablet:hidden tablet:opacity-0 tablet:pointer-events-none pe-2 ">
+      <div className="w-auto h-auto">
         <button
           type="button"
           aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="size-8 cursor-pointer text-white flex items-center justify-center"
+          className="cursor-pointer text-white flex items-center justify-center "
         >
-          {isMenuOpen ? <IconClose /> : <IconMenu />}
+          {isMenuOpen ? <IconClose size={30} /> : <IconMenu size={30} />}
         </button>
       </div>
       <div
         className={cn(
-          "flex flex-col absolute top-19 bg-black left-0 right-0 py-5 transition-all duration-200",
-          isMenuOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-3 pointer-events-none",
+          "flex flex-col items-center absolute top-19 bg-black left-0 right-0 py-5 transition-all duration-200",
+          isMenuOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-3 pointer-events-none",
         )}
       >
         {navData.map(({ id, label }) => (
           <a
             key={id}
             href={`#${id}`}
-            onClick={() => setIsActiveBtn(id)}
+            onClick={(e) => {
+              e.preventDefault();
+              setIsMenuOpen(false)
+              handleClick(id);
+            }}
             className={cn(
               " text-white cursor-pointer relative font-normal bg-transparent h-auto py-2 px-5 sm:px-6  ",
               id === isActiveBtn && "text-[#E71D79]",

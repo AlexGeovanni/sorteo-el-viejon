@@ -22,10 +22,10 @@ export default function Footer() {
         <div className="flex-1 flex flex-col justify-center tablet:mt-0">
           <div className="flex px-2 gap-2 flex-col-reverse tablet:justify-between tablet:items-center tablet:flex-row">
             <div className="flex flex-1 mt-4 flex-wrap flex-col gap-2 md:space-x-4 justify-center items-center tablet:mt-0 tablet:block">
-              <Link aria-label="Ir a politicas de privacidad" href={"/"} className="text-neutral-300 hover:text-white focus:text-white">Políticas de privacidad</Link>
-              <Link aria-label="Ir a politicas de devoluciones" href={"/"} className="text-neutral-300 hover:text-white focus:text-white">Políticas de devoluciones</Link>
-              <Link aria-label="Ir a terminos de uso" href={"/"} className="text-neutral-300 hover:text-white focus:text-white">Términos de uso</Link>
-              <Link aria-label="Ir a legales" href={"/"} className="text-neutral-300 hover:text-white focus:text-white">Legales</Link>
+              <Link aria-label="Ir a politicas de privacidad" href={"/"} className="font-medium text-neutral-300 hover:text-white focus:text-white">Políticas de privacidad</Link>
+              <Link aria-label="Ir a politicas de devoluciones" href={"/"} className="font-medium text-neutral-300 hover:text-white focus:text-white">Políticas de devoluciones</Link>
+              <Link aria-label="Ir a terminos de uso" href={"/"} className="font-medium text-neutral-300 hover:text-white focus:text-white">Términos de uso</Link>
+              <Link aria-label="Ir a legales" href={"/"} className="font-medium text-neutral-300 hover:text-white focus:text-white">Legales</Link>
             </div>
             <Link
               href={"/id-para-comprar-boletos"}

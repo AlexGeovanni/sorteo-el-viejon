@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
@@ -13,7 +12,7 @@ export default function HeaderHome() {
   const [isActiveBtn, setIsActiveBtn] = useState(navData[0].id);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const sectionsRef = useRef<Record<string, HTMLElement>>({});
-  const hasScrolled=useHasScrolled();
+  const hasScrolled = useHasScrolled();
   // Guardar referencias a las secciones
   useEffect(() => {
     navData.forEach(({ id }) => {
@@ -45,16 +44,14 @@ export default function HeaderHome() {
 
   // Scroll smooth y hash desde URL al cargar
   useEffect(() => {
-  const hash = window.location.hash.replace("#", "");
-  if (hash && sectionsRef.current[hash]) {
-    requestAnimationFrame(() => {
-      setIsActiveBtn(hash);
-      sectionsRef.current[hash].scrollIntoView({ behavior: "smooth" });
-    });
-  }
-}, []);
-
-  
+    const hash = window.location.hash.replace("#", "");
+    if (hash && sectionsRef.current[hash]) {
+      requestAnimationFrame(() => {
+        setIsActiveBtn(hash);
+        sectionsRef.current[hash].scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  }, []);
 
   // Click en menú
   const handleClick = (id: string) => {
@@ -65,7 +62,6 @@ export default function HeaderHome() {
 
   return (
     <header className="fixed top-0 left-0 right-0 w-full z-50">
-      {/* Fondo del navbar */}
       <div
         aria-hidden="true"
         className={cn(
@@ -77,7 +73,7 @@ export default function HeaderHome() {
       />
 
       <div className="max-w-360 px-2 sm:px-4 mx-auto h-[85px] flex items-center justify-between relative z-40">
-        {/* Logo */}
+
         <a href="#hero">
           <Image
             src="/logo/icono-calavera.svg"
@@ -87,51 +83,46 @@ export default function HeaderHome() {
           />
         </a>
 
-        <>
-          {/* Menu Desktop */}
-          <nav className="hidden tablet:flex gap-x-1 p-1.5 rounded-full relative">
-            {navData.map(({ id, label }) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleClick(id);
-                }}
-                className={cn(
-                  "text-white cursor-pointer relative rounded-full font-satoshi font-normal bg-transparent h-auto py-1.5 pb-[7px] px-5 sm:px-6 text-sm",
-                  !(id === isActiveBtn) && "hover:text-[#E71D79] text-white/90",
-                )}
-              >
-                {id === isActiveBtn && (
-                  <motion.div
-                    layoutId="active-pill"
-                    className="absolute h-full inset-0 z-10 bg-[#E71D79] mix-blend-lighten"
-                    style={{ borderRadius: 9999 }}
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-                {label}
-              </a>
-            ))}
-          </nav>
+        <nav className="hidden tablet:flex gap-x-1 p-1.5 rounded-full relative">
+          {navData.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleClick(id);
+              }}
+              className={cn(
+                "text-white cursor-pointer relative rounded-full font-satoshi font-normal bg-transparent h-auto py-1.5 pb-[7px] px-5 sm:px-6 text-sm",
+                !(id === isActiveBtn) && "hover:text-[#E71D79] text-white/90",
+              )}
+            >
+              {id === isActiveBtn && (
+                <motion.div
+                  layoutId="active-pill"
+                  className="absolute h-full inset-0 z-10 bg-[#E71D79] mix-blend-lighten"
+                  style={{ borderRadius: 9999 }}
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              {label}
+            </a>
+          ))}
+        </nav>
 
-          {/* CTA */}
-          <Link
-            href="/id-para-comprar-boletos"
-            className="hidden tablet:flex gap-2 items-center bg-white text-[#E71D79] px-6 py-2 rounded-full cursor-pointer transition hover:bg-[#E71D79] hover:text-white"
-          >
-            Boletos <IconArrowUpRight className="size-5" />
-          </Link>
+        <Link
+          href="/id-para-comprar-boletos"
+          className="hidden tablet:flex gap-2 items-center bg-white text-[#E71D79] px-6 py-2 rounded-full cursor-pointer transition hover:bg-[#E71D79] hover:text-white"
+        >
+          Boletos <IconArrowUpRight className="size-5" />
+        </Link>
 
-          {/* Mobile Nav */}
-          <MobileNav
-            isMenuOpen={isMenuOpen}
-            isActiveBtn={isActiveBtn}
-            setIsMenuOpen={setIsMenuOpen}
-            setIsActiveBtn={setIsActiveBtn}
-          />
-        </>
+        <MobileNav
+          isMenuOpen={isMenuOpen}
+          isActiveBtn={isActiveBtn}
+          setIsMenuOpen={setIsMenuOpen}
+          handleClick={handleClick}
+        />
       </div>
     </header>
   );

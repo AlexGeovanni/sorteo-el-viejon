@@ -8,7 +8,7 @@ export default function HeaderSecondary() {
 
   return (
     <header className="fixed top-0 left-0 right-0 w-full z-50">
-      {/* Fondo del navbar */}
+      
       <div
         aria-hidden="true"
         className={cn(
@@ -18,7 +18,7 @@ export default function HeaderSecondary() {
       />
 
       <div className="max-w-360 px-2 sm:px-4 mx-auto h-[85px] flex items-center justify-between relative z-40">
-        {/* Logo */}
+        
         <Link href="/">
           <Image src="/logo/icono-calavera.svg" alt="Logo" width={65} height={65} />
         </Link>

@@ -37,6 +37,7 @@ export default function DiagolLuck({ tickets, open, setOpen }: Props) {
   const [valueGenerate, setValueGenerate] = useState<number | null>(null);
   const [activeCasinoAnimation, setActiveCasinoAnimation] =
     useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleStartCasinoAnimation = () => {
     if (!valueGenerate) return;
@@ -45,16 +46,22 @@ export default function DiagolLuck({ tickets, open, setOpen }: Props) {
 
   const generateTickets = () => {
     if (!valueGenerate) return;
-    const result = selectRandomTickets(tickets, valueGenerate);
-    setTicketsGenerated(result);
+    try {
+      const result = selectRandomTickets(tickets, valueGenerate);
+      setError(null);
+      setTicketsGenerated(result);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError("Ocurrió un error al generar los boletos.");
+      }
+    }
   };
 
-  const reset=()=>{
+  const reset = () => {
     setValueGenerate(null);
     setTicketsGenerated([]);
     setForm(defaultValues);
-
-  }
+  };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -84,6 +91,7 @@ export default function DiagolLuck({ tickets, open, setOpen }: Props) {
               ¿Boletos a generar
             </p>
           </div>
+              <div className="text-sm text-zinc-300 mb-1 text-start block w-full">Disponibles: {tickets.length}</div>
           <div className="flex items-center flex-col space-y-2.5 w-full md:space-y-0 md:space-x-2 md:flex-row">
             <div className="relative flex-1 w-full">
               <div
@@ -106,9 +114,11 @@ export default function DiagolLuck({ tickets, open, setOpen }: Props) {
                   >
                     <div
                       role="listbox"
-                      className=" max-h-[120px] h-full overflow-auto overflow-y-auto scrollbar-thin scrollbar-thumb-gray scrollbar "
+                      className=" max-h-45 md:max-h-[120px] h-full overflow-auto overflow-y-auto scrollbar-thin scrollbar-thumb-gray scrollbar "
                     >
-                      {Array.from({ length: 11 }).map((_, i) => (
+                      {Array.from({
+                        length: Math.min(11, tickets.length),
+                      }).map((_, i) => (
                         <div
                           key={i}
                           role="option"
@@ -138,9 +148,13 @@ export default function DiagolLuck({ tickets, open, setOpen }: Props) {
             </button>
           </div>
           <div className="space-y-5 mt-4 w-full">
-            <div 
-            role="listbox"
-            className="min-h-20 grid grid-cols-4 xs:grid-cols-4 xsm:grid-cols-7 gap-2">
+            <div
+              role="listbox"
+              className="min-h-20 grid grid-cols-4 xs:grid-cols-4 xsm:grid-cols-7 gap-2"
+            >
+              {error && (
+                <div className="col-span-full text-center">{error}</div>
+              )}
               {ticketsGenerated.map((t, i) => (
                 <BoxSelect
                   key={i}

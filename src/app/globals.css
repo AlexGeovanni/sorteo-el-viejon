@@ -7,10 +7,6 @@
 }
 
 @theme inline {
-  /* --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono); */
   --color-primary:var(--primary);
   --breakpoint-xs:25rem;
   --breakpoint-xsm: 30rem;
@@ -70,7 +66,7 @@ textarea:focus-visible {
 }
 
 .scrollbar-thumb-gray {
-  scrollbar-color: #cfdae9 transparent; /* gris-400 */
+  scrollbar-color: #cfdae9 transparent; 
 }
 
 .scrollbar::-webkit-scrollbar {
@@ -78,20 +74,13 @@ textarea:focus-visible {
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-  background-color: #a0aec0; /* gris-400 */
+  background-color: #a0aec0; 
   border-radius: 8px;
 }
 
-input,
-textarea {
-  /* background-color: #1a1a1a;
-  color: #fff; */
-  color-scheme: dark;
-}
 
 input:-webkit-autofill,
 textarea:-webkit-autofill {
-  /* -webkit-text-fill-color: #fff !important; */
   -webkit-box-shadow: 0 0 0px 1000px #171717 inset !important;
   border:inherit;
 }
